@@ -1,17 +1,24 @@
-name: PKI CI Pipeline
+name: PKI Secure CI Pipeline
 on: [push, workflow_dispatch]
 
 jobs:
-  test:
+  security-and-testing:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout Code
         uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.x'
+          python-version: '3.10'
 
-      - name: Run PKI test
-        run: python test_pki_tool.py
+      - name: Install Security Tools & Deps
+        run: |
+          pip install bandit cryptography pytest
+
+      - name: Run Bandit (Security Scan)
+        run: bandit -r . -v
+
+      - name: Run PKI Functional Test
+        run: python3 test_pki_tool.py
