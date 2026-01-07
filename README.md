@@ -14,6 +14,6 @@ This project demonstrates the automation of a Public Key Infrastructure (PKI) si
 The project is configured with GitHub Actions. On every push, the `PKI CI Pipeline` automatically runs the test suite to ensure code integrity.
 
 ## How to Run Locally
-1. Clone the repo: `git clone <your-repo-url>`
+1. Clone the repo: `git clone <repo-url>`
 2. Run the tool: `python pki_tool.py`
 3. Run the tests: `python test_pki_tool.py`
